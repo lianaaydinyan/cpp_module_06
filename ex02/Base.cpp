@@ -6,7 +6,7 @@
 
 Base* generate()
 {
-    std::srand(std::time(nullptr));
+    // std::srand(std::time(NULL));
     int choice = std::rand() % 3;
     switch (choice) {
         case 0:
@@ -16,9 +16,10 @@ Base* generate()
         case 2:
             return new C;
         default:
-            return nullptr;
+            return NULL;
     }
 }
+
 void identify(Base* p)
 {
     if (dynamic_cast<A*>(p))
@@ -61,3 +62,7 @@ void identify(Base &p)
     }
 }
 
+Base::~Base()
+{
+    std::cout << "destructor ~" << std::endl;
+}

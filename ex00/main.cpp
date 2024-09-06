@@ -3,7 +3,7 @@
 int main(int argc, char **argv)
 {
 	std::string type;
-
+	(void)argc;
 	if (argv[1] && !argv[2])
 	{
 		type = argv[1];

@@ -45,13 +45,14 @@ ScalarConverter::ScalarConverter()
     //construct
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter const& copy)
+ScalarConverter::ScalarConverter(const ScalarConverter& copy)
 {
     *this = copy;
 }
 
-ScalarConverter& ScalarConverter::operator=(ScalarConverter const& copy)
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copy)
 {
+    (void)copy;
     return (*this);
 }
 
@@ -63,7 +64,10 @@ ScalarConverter::~ScalarConverter()
 void ScalarConverter::convert(const std::string& type)
 {
     if (literal_verification(type))
+    {
+        std::cout << "\n|\n" ;
         return;
+    }
     if (_char(type))
         for_char(type);
     else if (_int(type))
@@ -72,6 +76,8 @@ void ScalarConverter::convert(const std::string& type)
         for_double(type);
     else if (_float(type))
         for_float(type);
+    else
+        std::cout << " We support only int, char, float, double >_<\n"; 
 }
 
 
@@ -84,7 +90,7 @@ bool _char(const std::string& str)
 
 bool _int(const std::string& str)
 {
-    int i;
+    size_t i;
     long int num;
 
     i = 0;
@@ -104,7 +110,7 @@ bool _int(const std::string& str)
 
 bool _float(const std::string& str)
 {
-    int i = 0;
+    size_t i = 0;
     bool has_decimal = false;
 
     if (str.length() > 0 && (str[0] == '-' || str[0] == '+'))
@@ -128,7 +134,7 @@ bool _float(const std::string& str)
 
 bool _double(const std::string& str)
 {
-    int i = 0;
+    size_t i = 0;
     int dot_count = 0;
     bool has_exponent = false;
 
@@ -282,7 +288,7 @@ void for_float(const std::string& literal)
 void for_double(const std::string& literal)
 {
     if (literal_verification(literal) == true) {return ;}
-    float f_value = std::strtof(literal.c_str(), nullptr);
+    float f_value = std::strtof(literal.c_str(), NULL);
     std::cout << "char: ";
     if ((f_value >= 0 && f_value < 32 ) || f_value == 127)
         std::cout << "Non displayable" << std::endl;

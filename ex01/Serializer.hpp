@@ -18,7 +18,7 @@ class Serializer
     public:
         static uintptr_t serialize(Data *pointer);
         static Data *deserialize(uintptr_t num);
-        Serializer &operator=(Serializer const &copy);
+        Serializer &operator=(const Serializer& copy);
         ~Serializer();
 };
 

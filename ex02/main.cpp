@@ -1,11 +1,15 @@
 #include "Base.hpp"
 
+
+
 int main(void)
 {
 
+    Base *p;
+    std::srand(std::time(NULL));
     for (int i = 0; i < class_count; i++)
     {
-        Base *p = generate();
+        p = generate();
         std::cout << "* Identify -> ";
         identify(p);
         std::cout << "& Identify -> ";

@@ -20,8 +20,9 @@ Data* Serializer::deserialize(uintptr_t num)
  return (reinterpret_cast<Data*>(num));
 }
 
-Serializer& Serializer::operator=(Serializer const &copy)
+Serializer& Serializer::operator=(const Serializer& copy)
 {
+    (void)copy;
     return (*this);
 }
 
