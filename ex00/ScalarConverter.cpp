@@ -90,22 +90,21 @@ bool _char(const std::string& str)
 
 bool _int(const std::string& str)
 {
-    size_t i;
-    long int num;
+    size_t i = 0;
 
-    i = 0;
-    if (str.length() > 0 && (str[0] == '-' || str[0] == '+'))
+    if (str.length() == 0) return false;
+
+    if (str[0] == '-' || str[0] == '+')
         i++;
+
     for (; i < str.size(); i++)
     {
         if (!std::isdigit(str[i]))
             return false;
     }
-    num = std::atol(str.c_str());
-    if (num <= std::numeric_limits<int>::max() && num >= std::numeric_limits<int>::min())
-        return (true);
-    else
-        return (false);
+
+    long num = std::atol(str.c_str());
+    return (num <= std::numeric_limits<int>::max() && num >= std::numeric_limits<int>::min());
 }
 
 bool _float(const std::string& str)
@@ -113,16 +112,20 @@ bool _float(const std::string& str)
     size_t i = 0;
     bool has_decimal = false;
 
-    if (str.length() > 0 && (str[0] == '-' || str[0] == '+'))
+    if (str.length() == 0) return false;
+
+    if (str[0] == '-' || str[0] == '+')
         i++;
+
     for (; i < str.length(); i++)
     {
-        if (str[i] == '.') {
+        if (str[i] == '.') 
+        {
             if (has_decimal)
                 return false;
             has_decimal = true;
         }
-        else if (!std::isdigit(str[i]))
+        else if (!std::isdigit(str[i])) 
         {
             if ((str[i] == 'f' || str[i] == 'F') && i == str.length() - 1 && has_decimal)
                 return true;
@@ -132,17 +135,22 @@ bool _float(const std::string& str)
     return has_decimal;
 }
 
+
 bool _double(const std::string& str)
 {
     size_t i = 0;
     int dot_count = 0;
     bool has_exponent = false;
 
-    if (str.length() > 0 && (str[0] == '-' || str[0] == '+'))
+    if (str.length() == 0) return false;
+
+    if (str[0] == '-' || str[0] == '+')
         i++;
+
     for (; i < str.length(); i++)
     {
-        if (str[i] == '.') {
+        if (str[i] == '.') 
+        {
             dot_count++;
             if (dot_count > 1)
                 return false;
@@ -155,22 +163,14 @@ bool _double(const std::string& str)
             if (i == str.length() - 1 || (!std::isdigit(str[i + 1]) && str[i + 1] != '+' && str[i + 1] != '-'))
                 return false;
         }
-        else if (str[i] == '+' || str[i] == '-')
-        {
-            if (i > 0 && (str[i - 1] != 'e' && str[i - 1] != 'E'))
-                return false;
-        }
-        else if (str[i] == 'D' || str[i] == 'd')
-        {
-            if (dot_count == 1 && i == str.length() - 1)
-                return true;
-            return false;
-        }
         else if (!std::isdigit(str[i]))
+        {
             return false;
+        }
     }
-    return ((dot_count == 1 )|| has_exponent);
+    return (dot_count == 1 || has_exponent); 
 }
+
 
 
 // void  cast_imposible()
