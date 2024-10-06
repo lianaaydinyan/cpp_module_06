@@ -2,12 +2,11 @@
 
 Serializer::Serializer()
 {
-
 }
 
 Serializer::Serializer(const Serializer& copy)
 {
-    *this = copy;
+    (void)copy;
 }
 
 uintptr_t Serializer::serialize(Data *pointer)

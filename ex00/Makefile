@@ -1,12 +1,13 @@
 NAME = scalar
+HEADER = ScalarConverter.hpp
 SRC = ScalarConverter.cpp main.cpp
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS =  -std=c++98
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp Makefile $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) 
