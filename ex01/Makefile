@@ -1,5 +1,5 @@
 NAME = serializer
-HEADER = Serializer.hpp
+HEADER = Serializer.hpp data.hpp
 SRC = Serializer.cpp main.cpp
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98

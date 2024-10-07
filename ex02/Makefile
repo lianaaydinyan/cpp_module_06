@@ -1,4 +1,5 @@
 NAME = base
+HEADER = Base.hpp A.hpp B.cpp C.hpp
 SRC = Base.cpp main.cpp
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -6,7 +7,7 @@ OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp Makefile $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) 
